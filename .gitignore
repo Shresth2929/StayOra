@@ -1,0 +1,8 @@
+venv/
+.venv/
+node_modules/
+frontend/.next/
+*.pyc
+__pycache__/
+stayora.db
+.env
