@@ -5,7 +5,14 @@ from database import Base, engine
 
 app = FastAPI(title="Stayora API")
 
-origins = [os.getenv("FRONTEND_URL", "http://localhost:3000")]
+origins = [
+    "http://localhost:3000",
+    "https://stay-ora-hazel.vercel.app",
+    os.getenv("FRONTEND_URL", "http://localhost:3000"),
+]
+
+# Deduplicate while preserving localhost and production Vercel access.
+origins = list(dict.fromkeys(filter(None, origins)))
 
 app.add_middleware(
     CORSMiddleware,
